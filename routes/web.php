@@ -16,3 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/product', function () {
+    return view('product');
+})->middleware(['auth'])->name('product');
+
+Route::get('/customer', function () {
+    return view('customer');
+})->middleware(['auth'])->name('customer');
+
+Route::get('/sales_order', function () {
+    return view('sales-order');
+})->middleware(['auth'])->name('sales_order');
+
+require __DIR__.'/auth.php';

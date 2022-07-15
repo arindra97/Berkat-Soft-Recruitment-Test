@@ -8,15 +8,26 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+    protected $dates=[
+        'updated_at',
+        'created_at',
+        'deleted_at',
+        'email_verified_at',
+    ];
+
     protected $fillable = [
         'name',
         'email',
@@ -41,4 +52,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // one to many
+    public function sales_order()
+    {
+        return $this->hasMany('App\Models\SalesOrder', 'users_id');
+    }
 }

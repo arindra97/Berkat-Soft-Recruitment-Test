@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+// frontsite
+use App\Http\Controllers\Frontsite\LandingController;
+
+// backsite
+use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Backsite\UserController;
+use App\Http\Controllers\Backsite\ProductController;
+use App\Http\Controllers\Backsite\SalesOrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,20 +22,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::resource('/', LandingController::class);
+
+
+Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function () {
+    // dashboard
+    Route::resource('dashboard', DashboardController::class);
+    
+    // user
+    Route::resource('user', UserController::class);
+
+    // product
+    Route::resource('product', ProductController::class);
+
+    // sales order
+    Route::resource('sales-order', SalesOrderController::class);
 });
-
-Route::get('/product', function () {
-    return view('product');
-})->middleware(['auth'])->name('product');
-
-Route::get('/customer', function () {
-    return view('customer');
-})->middleware(['auth'])->name('customer');
-
-Route::get('/sales_order', function () {
-    return view('sales-order');
-})->middleware(['auth'])->name('sales_order');
-
-require __DIR__.'/auth.php';

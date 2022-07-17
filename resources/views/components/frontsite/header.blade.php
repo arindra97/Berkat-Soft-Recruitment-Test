@@ -6,7 +6,7 @@
 
                 <!-- Logo Brand -->
                 <a href="{{ route('index') }}" class="flex-shrink-0 flex items-center">
-                    <img class="h-12 lg:h-16 w-auto" src="{{ asset('/assets/frontsite/images/logo.png') }}" alt="Meet Doctor Logo" />
+                    <img class="h-12 lg:h-16 w-auto" src="{{ asset('/assets/frontsite/images/logo.png') }}" alt="Berkat Soft Logo" />
                 </a>
 
                 <!-- Navigation Menu -->
@@ -57,9 +57,8 @@
                 <div x-data="{ profileDekstopOpen: false }" class="ml-3 relative">
                     <div>
                         <button type="button" class="bg-white rounded-full flex text-sm focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true" @click="profileDekstopOpen = ! profileDekstopOpen">
-                            <!-- focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 -->
                             <span class="sr-only">Open user menu</span>
-                            <div class="text-right mr-5">
+                            <div class="text-right mr-5 h-12 flex items-center">
                                 <div class="text-base font-medium text-[#1E2B4F]">
                                     Hi, {{ Auth::user()->name }}
                                 </div>

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('sales_order', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->nullable()->index('fk_sales_order_to_product');
             $table->foreignId('users_id')->nullable()->index('fk_sales_order_to_users');
-            $table->date('date')->nullable();
+            $table->foreignId('product_id')->nullable()->index('fk_sales_order_to_product');
+            $table->string('jumlah_barang')->nullable();
             $table->string('total')->nullable();
             $table->timestamps();
             $table->softDeletes();

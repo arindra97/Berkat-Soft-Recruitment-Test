@@ -3,7 +3,6 @@
 namespace App\Http\Requests\User;
 
 use App\Models\User;
-use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,9 +18,6 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        // create middleware from kernel at here
-        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         return true;
     }
 
@@ -43,7 +39,6 @@ class UpdateUserRequest extends FormRequest
             'password' => [
                 'min:8', 'string', 'max:255', 'mixedCase',
             ],
-            //add validation for role this here
         ];
     }
 }

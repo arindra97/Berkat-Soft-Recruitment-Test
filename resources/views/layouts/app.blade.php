@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-    <!-- BEGIN: Head-->
-    <head>
-        
-        @include('includes.backsite.meta')
+<!-- BEGIN: Head-->
 
-        <title>@yield('title') | Meet Doctor Backoffice</title>
+<head>
 
-        <link rel="apple-touch-icon" href="{{ asset('assets/backsite/app-assets/images/ico/apple-icon-120.png') }}">
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/backsite/app-assets/images/ico/favicon.ico') }}">
-        <link href="{{ url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700') }}" rel="stylesheet">
+    @include('includes.backsite.meta')
 
-        @stack('before-style')
-            @include('includes.backsite.style')
-        @stack('after-style')
+    <title>@yield('title') | Berkat Soft Backoffice</title>
 
-    </head>
+    <link rel="apple-touch-icon" href="{{ asset('assets/backsite/app-assets/images/ico/apple-icon-120.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/backsite/app-assets/images/ico/favicon.ico') }}">
+    <link href="{{ url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700') }}" rel="stylesheet">
 
-    <!-- BEGIN: Body-->
-    <body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
+    @stack('before-style')
+    @include('includes.backsite.style')
+    @stack('after-style')
 
-        @include('sweetalert::alert')
+</head>
 
-        @include('components.backsite.header')
+<!-- BEGIN: Body-->
 
-        @include('components.backsite.menu')
-            @yield('content')
+<body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
 
-        @include('components.backsite.footer')
-        
-        @stack('before-script')
-            @include('includes.backsite.script')
-        @stack('after-script')
+    @include('sweetalert::alert')
 
-    </body>
+    @include('components.backsite.header')
+
+    @include('components.backsite.menu')
+    @yield('content')
+
+    @include('components.backsite.footer')
+
+    @stack('before-script')
+    @include('includes.backsite.script')
+    @stack('after-script')
+
+</body>
+
 </html>

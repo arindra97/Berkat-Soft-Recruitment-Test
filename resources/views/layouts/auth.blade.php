@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        @include('includes.auth.meta')
-        
-        <title>@yield('title') | MeetDoctor</title>
 
-        @stack('before-style')
-            @include('includes.frontsite.style')
-        @stack('after-style')
+<head>
 
-    </head>
-    <body>
+    @include('includes.auth.meta')
 
-        @include('sweetalert::alert')
-        
-        @yield('content')
+    <title>@yield('title') | Berkat Soft</title>
 
-        @stack('before-script')
-            @include('includes.frontsite.script')
-        @stack('after-script')
+    @stack('before-style')
+    @include('includes.frontsite.style')
+    @stack('after-style')
 
-    </body>
+</head>
+
+<body>
+
+    @include('sweetalert::alert')
+
+    @yield('content')
+
+    @stack('before-script')
+    @include('includes.frontsite.script')
+    @stack('after-script')
+
+</body>
+
 </html>

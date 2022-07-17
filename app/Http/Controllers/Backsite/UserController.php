@@ -41,7 +41,7 @@ class UserController extends Controller
     {
         // for table grid
         $user = User::orderBy('created_at', 'desc')->get();
-        
+
         return view('pages.backsite.user.index', compact('user'));
     }
 
@@ -71,15 +71,6 @@ class UserController extends Controller
 
         // store to database
         $user = User::create($data);
-
-        // // sync role by users select
-        // $user->role()->sync($request->input('role', []));
-
-        // // save to detail user , to set type user
-        // $detail_user = new DetailUser;
-        // $detail_user->user_id = $user['id'];
-        // $detail_user->type_user_id = $request['type_user_id'];
-        // $detail_user->save();
 
         alert()->success('Success Message', 'Successfully added new user');
         return redirect()->route('backsite.user.index');
@@ -121,14 +112,6 @@ class UserController extends Controller
 
         // update to database
         $user->update($data);
-
-        // // update roles
-        // $user->role()->sync($request->input('role', []));
-
-        // // save to detail user , to set type user
-        // $detail_user = DetailUser::find($user['id']);
-        // $detail_user->type_user_id = $request['type_user_id'];
-        // $detail_user->save();
 
         alert()->success('Success Message', 'Successfully updated user');
         return redirect()->route('backsite.user.index');

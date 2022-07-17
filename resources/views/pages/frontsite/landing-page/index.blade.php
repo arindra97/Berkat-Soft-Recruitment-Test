@@ -7,7 +7,7 @@
 <!-- Content -->
 <main class="min-h-screen">
 
-    <!-- Best Doctors -->
+    <!-- Best Product -->
     <section class="mt-4 lg:mt-16">
         <div class="mx-auto max-w-7xl px-4 lg:px-14 py-14">
             <h3 class="text-[#1E2B4F] text-2xl font-semibold">Product</h3>
@@ -47,7 +47,7 @@
             <!-- End Card -->
         </div>
     </section>
-    <!-- End Best Doctors -->
+    <!-- End Best Product -->
 
 </main>
 <!-- End Content -->

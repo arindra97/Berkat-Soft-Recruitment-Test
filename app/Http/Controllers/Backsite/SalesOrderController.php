@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
+// use request here
+use App\Http\Requests\SalesOrder\StoreSalesOrderRequest;
+
 // use everything here
 use Auth;
 
@@ -37,8 +40,11 @@ class SalesOrderController extends Controller
     public function index()
     {
         $sales_order = SalesOrder::orderBy('created_at', 'desc')->get();
+
+        $user = User::orderBy('created_at', 'desc')->get();
+        $product = Product::orderBy('created_at', 'desc')->get();
         
-        return view('pages.backsite.sales-order.index', compact('sales_order'));
+        return view('pages.backsite.sales-order.index', compact('sales_order', 'user', 'product'));
     }
 
     /**
@@ -57,9 +63,36 @@ class SalesOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSalesOrderRequest $request)
     {
-        return abort(404);
+        // get all request from frontsite
+        $data = $request->all();
+
+        $product = Product::where('id', $data['product_id'])->first();
+
+        // set transaction
+        $price = $product->price;
+        $jumlah_barang = $data['jumlah_barang'];
+        
+        // total
+        $total = $price * $jumlah_barang; 
+        
+        // save to database
+        $sales_order = new SalesOrder;
+        $sales_order->users_id = $data['user_id'];
+        $sales_order->product_id = $data['product_id'];
+        $sales_order->jumlah_barang = $jumlah_barang;
+        $sales_order->total = $total;
+        $sales_order->save();
+        
+        // update status product
+        $product = Product::find($product->id);
+        $sisa_barang = $product->qty - $jumlah_barang;
+        $product->qty = $sisa_barang;
+        $product->save();
+
+        alert()->success('Success Message', 'Successfully added new Transactions');
+        return redirect()->route('backsite.sales-order.index');
     }
 
     /**

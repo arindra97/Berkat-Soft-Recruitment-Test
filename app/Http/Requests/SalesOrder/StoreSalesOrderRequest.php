@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\SalesOrder;
 
-use App\Models\User;
+use App\Models\SalesOrder;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class StoreUserRequest extends FormRequest
+class StoreSalesOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +26,8 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'jumlah_barang' => [
                 'required', 'string', 'max:255',
-            ],
-            'email' => [
-                'required', 'email', 'unique:users', 'max:255',
-            ],
-            'password' => [
-                'min:8', 'string', 'max:255', 'mixedCase',
             ],
         ];
     }

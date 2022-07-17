@@ -22,12 +22,12 @@ class SalesOrder extends Model
 
     // declare fillable
     protected $fillable = [
-        'product_id',
         'users_id',
-        'date',
+        'product_id',
+        'jumlah_barang',
         'total',
-        'updated_at',
         'created_at',
+        'updated_at',
         'deleted_at',
     ];
 
